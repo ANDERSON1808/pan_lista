@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="panListaAsociados">
+      <h2 data-cy="panListaAsociadosDetailsHeading"><span>Pan Lista Asociados</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ panListaAsociados.id }}</span>
+        </dd>
+        <dt><span>Lista Asociados Id</span></dt>
+        <dd>
+          <span>{{ panListaAsociados.listaAsociadosId }}</span>
+        </dd>
+        <dt><span>Grupo</span></dt>
+        <dd>
+          <span>{{ panListaAsociados.grupo }}</span>
+        </dd>
+        <dt><span>Posicion Id</span></dt>
+        <dd>
+          <span>{{ panListaAsociados.posicionId }}</span>
+        </dd>
+        <dt><span>Nombre Completo</span></dt>
+        <dd>
+          <span>{{ panListaAsociados.nombreCompleto }}</span>
+        </dd>
+        <dt><span>Estado Habil</span></dt>
+        <dd>
+          <span>{{ panListaAsociados.estadoHabil }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pan-lista-asociados', panListaAsociados.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

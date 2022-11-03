@@ -42,6 +42,8 @@
     "jwtSecretKey": "YjA1Zjk5ZTc4ZjAwMTk1MGQ2M2Q4YTBjYThhZmMzMWJiMDc4NGQwMzZkMjc0YmJhMDYxNzkyOWI4MjM3ZTVmOTI1YWQzNDBjMTI2MmVlNzFjODNhMTVkMDYyZDIxNjU1Mjg0Mzk2ZTY3OGQxMWRjNmQ1MTcyNjA5NGM3OGMxYmY=",
     "devServerPort": 4200,
     "clientPackageManager": "npm",
-    "languages": ["en", "fr"]
+    "languages": ["en", "fr"],
+    "lastLiquibaseTimestamp": 1667439748000,
+    "entities": ["PanListaAsociados"]
   }
 }

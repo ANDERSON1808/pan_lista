@@ -1,0 +1,36 @@
+{
+  "fields": [
+    {
+      "fieldName": "listaAsociadosId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "grupo",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "posicionId",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "nombreCompleto",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "255"
+    },
+    {
+      "fieldName": "estadoHabil",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "255"
+    }
+  ],
+  "relationships": [],
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "no",
+  "name": "PanListaAsociados",
+  "changelogDate": "20221103014228"
+}

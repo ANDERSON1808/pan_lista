@@ -1,0 +1,86 @@
+<div>
+  <h2 id="page-heading" data-cy="PanListaAsociadosHeading">
+    <span>Pan Lista Asociados</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pan-lista-asociados"
+        [routerLink]="['/pan-lista-asociados/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Pan Lista Asociados </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="panListaAsociados?.length === 0">
+    <span>No panListaAsociados found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="panListaAsociados && panListaAsociados.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Lista Asociados Id</span></th>
+          <th scope="col"><span>Grupo</span></th>
+          <th scope="col"><span>Posicion Id</span></th>
+          <th scope="col"><span>Nombre Completo</span></th>
+          <th scope="col"><span>Estado Habil</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let panListaAsociados of panListaAsociados; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/pan-lista-asociados', panListaAsociados.id, 'view']">{{ panListaAsociados.id }}</a>
+          </td>
+          <td>{{ panListaAsociados.listaAsociadosId }}</td>
+          <td>{{ panListaAsociados.grupo }}</td>
+          <td>{{ panListaAsociados.posicionId }}</td>
+          <td>{{ panListaAsociados.nombreCompleto }}</td>
+          <td>{{ panListaAsociados.estadoHabil }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/pan-lista-asociados', panListaAsociados.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/pan-lista-asociados', panListaAsociados.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(panListaAsociados)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

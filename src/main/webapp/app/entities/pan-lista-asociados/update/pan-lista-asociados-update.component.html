@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-pan-lista-asociados-heading" data-cy="PanListaAsociadosCreateUpdateHeading">Create or edit a Pan Lista Asociados</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_listaAsociadosId">Lista Asociados Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="listaAsociadosId"
+            id="field_listaAsociadosId"
+            data-cy="listaAsociadosId"
+            formControlName="listaAsociadosId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_grupo">Grupo</label>
+          <input type="number" class="form-control" name="grupo" id="field_grupo" data-cy="grupo" formControlName="grupo" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_posicionId">Posicion Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="posicionId"
+            id="field_posicionId"
+            data-cy="posicionId"
+            formControlName="posicionId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_nombreCompleto">Nombre Completo</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nombreCompleto"
+            id="field_nombreCompleto"
+            data-cy="nombreCompleto"
+            formControlName="nombreCompleto"
+          />
+          <div
+            *ngIf="
+              editForm.get('nombreCompleto')!.invalid && (editForm.get('nombreCompleto')!.dirty || editForm.get('nombreCompleto')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('nombreCompleto')?.errors?.maxlength">
+              This field cannot be longer than 255 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_estadoHabil">Estado Habil</label>
+          <input
+            type="text"
+            class="form-control"
+            name="estadoHabil"
+            id="field_estadoHabil"
+            data-cy="estadoHabil"
+            formControlName="estadoHabil"
+          />
+          <div *ngIf="editForm.get('estadoHabil')!.invalid && (editForm.get('estadoHabil')!.dirty || editForm.get('estadoHabil')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('estadoHabil')?.errors?.maxlength">
+              This field cannot be longer than 255 characters.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

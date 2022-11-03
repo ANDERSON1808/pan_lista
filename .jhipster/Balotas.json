@@ -1,0 +1,33 @@
+{
+  "fields": [
+    {
+      "fieldName": "numero",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "creado",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipName": "sorteos",
+      "otherEntityName": "sorteos",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipName": "panListaAsociados",
+      "otherEntityName": "panListaAsociados",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    }
+  ],
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "no",
+  "name": "Balotas",
+  "changelogDate": "20221103030142"
+}

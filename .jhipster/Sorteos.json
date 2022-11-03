@@ -1,0 +1,20 @@
+{
+  "fields": [
+    {
+      "fieldName": "fechaSorteo",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "codigo",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "no",
+  "name": "Sorteos",
+  "changelogDate": "20221103025607"
+}

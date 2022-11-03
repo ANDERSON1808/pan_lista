@@ -43,7 +43,7 @@
     "devServerPort": 4200,
     "clientPackageManager": "npm",
     "languages": ["en", "fr"],
-    "lastLiquibaseTimestamp": 1667439748000,
-    "entities": ["PanListaAsociados"]
+    "lastLiquibaseTimestamp": 1667444502000,
+    "entities": ["PanListaAsociados", "Sorteos", "Balotas"]
   }
 }

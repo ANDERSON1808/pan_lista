@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-balotas-heading" data-cy="BalotasCreateUpdateHeading">Create or edit a Balotas</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_numero">Numero</label>
+          <input type="number" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_creado">Creado</label>
+          <div class="d-flex">
+            <input
+              id="field_creado"
+              data-cy="creado"
+              type="datetime-local"
+              class="form-control"
+              name="creado"
+              formControlName="creado"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_sorteos">Sorteos</label>
+          <select class="form-control" id="field_sorteos" data-cy="sorteos" name="sorteos" formControlName="sorteos">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="sorteosOption.id === editForm.get('sorteos')!.value?.id ? editForm.get('sorteos')!.value : sorteosOption"
+              *ngFor="let sorteosOption of sorteosSharedCollection; trackBy: trackSorteosById"
+            >
+              {{ sorteosOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_panListaAsociados">Pan Lista Asociados</label>
+          <select
+            class="form-control"
+            id="field_panListaAsociados"
+            data-cy="panListaAsociados"
+            name="panListaAsociados"
+            formControlName="panListaAsociados"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                panListaAsociadosOption.id === editForm.get('panListaAsociados')!.value?.id
+                  ? editForm.get('panListaAsociados')!.value
+                  : panListaAsociadosOption
+              "
+              *ngFor="let panListaAsociadosOption of panListaAsociadosSharedCollection; trackBy: trackPanListaAsociadosById"
+            >
+              {{ panListaAsociadosOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

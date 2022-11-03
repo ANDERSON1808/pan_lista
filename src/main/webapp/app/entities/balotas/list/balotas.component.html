@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="BalotasHeading">
+    <span>Balotas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-balotas"
+        [routerLink]="['/balotas/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Balotas </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="balotas?.length === 0">
+    <span>No balotas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="balotas && balotas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Numero</span></th>
+          <th scope="col"><span>Creado</span></th>
+          <th scope="col"><span>Sorteos</span></th>
+          <th scope="col"><span>Pan Lista Asociados</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let balotas of balotas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/balotas', balotas.id, 'view']">{{ balotas.id }}</a>
+          </td>
+          <td>{{ balotas.numero }}</td>
+          <td>{{ balotas.creado | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="balotas.sorteos">
+              <a [routerLink]="['/sorteos', balotas.sorteos?.id, 'view']">{{ balotas.sorteos?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="balotas.panListaAsociados">
+              <a [routerLink]="['/pan-lista-asociados', balotas.panListaAsociados?.id, 'view']">{{ balotas.panListaAsociados?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/balotas', balotas.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/balotas', balotas.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(balotas)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

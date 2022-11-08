@@ -2,7 +2,9 @@ package com.pe.pandero.asamblea.web.rest;
 
 import com.pe.pandero.asamblea.repository.SorteosRepository;
 import com.pe.pandero.asamblea.service.SorteosService;
+import com.pe.pandero.asamblea.service.dto.PanListaAsociadosDTO;
 import com.pe.pandero.asamblea.service.dto.SorteosDTO;
+import com.pe.pandero.asamblea.service.operaciones.OperadorService;
 import com.pe.pandero.asamblea.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -48,9 +50,12 @@ public class SorteosResource {
 
     private final SorteosRepository sorteosRepository;
 
-    public SorteosResource(SorteosService sorteosService, SorteosRepository sorteosRepository) {
+    private final OperadorService operadorService;
+
+    public SorteosResource(SorteosService sorteosService, SorteosRepository sorteosRepository, OperadorService operadorService) {
         this.sorteosService = sorteosService;
         this.sorteosRepository = sorteosRepository;
+        this.operadorService = operadorService;
     }
 
     /**
@@ -228,5 +233,11 @@ public class SorteosResource {
                         .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
                         .build()
             );
+    }
+
+    @GetMapping("/operador")
+    public Mono<List<PanListaAsociadosDTO>> getAllOperador() {
+        log.debug("REST request to get all Sorteos");
+        return operadorService.realizarSorteo();
     }
 }

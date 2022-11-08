@@ -1,8 +1,8 @@
 package com.pe.pandero.asamblea.repository;
 
 import com.pe.pandero.asamblea.domain.PanListaAsociados;
+import javax.validation.constraints.Size;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.data.relational.core.query.Criteria;
 import org.springframework.stereotype.Repository;
@@ -24,6 +24,8 @@ public interface PanListaAsociadosRepository extends R2dbcRepository<PanListaAso
 
     @Override
     <S extends PanListaAsociados> Mono<S> save(S entity);
+
+    Flux<PanListaAsociados> getAllByPosicionId(Double posicionId);
 }
 
 interface PanListaAsociadosRepositoryInternal {

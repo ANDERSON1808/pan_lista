@@ -4,6 +4,7 @@ import com.pe.pandero.asamblea.domain.PanListaAsociados;
 import com.pe.pandero.asamblea.repository.PanListaAsociadosRepository;
 import com.pe.pandero.asamblea.service.dto.PanListaAsociadosDTO;
 import com.pe.pandero.asamblea.service.mapper.PanListaAsociadosMapper;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -78,8 +79,8 @@ public class PanListaAsociadosService {
 
     /**
      * Returns the number of panListaAsociados available.
-     * @return the number of entities in the database.
      *
+     * @return the number of entities in the database.
      */
     public Mono<Long> countAll() {
         return panListaAsociadosRepository.count();
@@ -106,5 +107,9 @@ public class PanListaAsociadosService {
     public Mono<Void> delete(Long id) {
         log.debug("Request to delete PanListaAsociados : {}", id);
         return panListaAsociadosRepository.deleteById(id);
+    }
+
+    public Flux<PanListaAsociadosDTO> findByPosicionIdAndEstadoHabil(Double posicionId) {
+        return panListaAsociadosRepository.getAllByPosicionId(posicionId).map(panListaAsociadosMapper::toDto);
     }
 }
